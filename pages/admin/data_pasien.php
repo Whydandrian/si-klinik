@@ -22,7 +22,8 @@ if ($_SESSION['level'] != "admin_daftar") {
       <div class="card border-primary mb-3">
         <div class="card-header fw-bold">Data Pasien</div>
         <div class="card-body">
-          <h5 class="card-title"><a href="../pasien_data/tambah.php" class="btn btn-primary">Tambah Data</a></h5>
+          <h5 class="card-title"><a href="../pasien_data/tambah.php" class="btn btn-primary">Tambah Data</a> | <a href="../laporan/laporan_pasien.php" class="btn btn-warning">Laporan Data Pasien</a></h5>
+          
           <?php
           if (isset($_GET['pesan'])) {
             if ($_GET['pesan'] == "berhasil_hapus") {

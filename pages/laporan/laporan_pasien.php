@@ -17,34 +17,36 @@ include '../../layouts/auth/header.php';
 	    	<thead>
 	    		<tr>
 	    			<td>No</td>
-	    			<td>Nama Pegawai</td>
+	    			<td>Nama Pasien</td>
 	    			<td>Jenis Kelamin</td>
-	    			<td>Jabatan</td>
-	    			<td>Tgl. Lahir</td>
+	    			<td>Telepon</td>
+	    			<td>Tgl. Daftar</td>
 	    			<td>Tgl. Lahir</td>
 	    		</tr>
 	    	</thead>
 	    	<tbody>
 				<?php
 			        $no = 1;
-			        $query = "SELECT * FROM pegawai ORDER BY nama_pegawai ASC";
+			        $query = "SELECT `pendaftaran`.*, `layanan`.`nama_layanan`, `layanan`.`harga_layanan`, `pasien`.`nama_pasien`, `pasien`.`jenis_kelamin`, `pasien`.`golongan_darah`, `pasien`.`telepon`, `pasien`.`jenis_pasien`, `pasien`.`alamat_pasien` FROM `layanan` INNER JOIN `pendaftaran` ON `pendaftaran`.`kode_layanan` = `layanan`.`kode_layanan` INNER JOIN `pasien` ON `pendaftaran`.`kode_pasien` = `pasien`.`kode_pasien` ORDER BY `pasien`.`nama_pasien` ASC";
 			        $dewan1 = $koneksi->prepare($query);
 			        $dewan1->execute();
 			        $res1 = $dewan1->get_result();
 
 			        if ($res1->num_rows > 0) {
 				        while ($row = $res1->fetch_assoc()) {
-				            $nama_pegawai = $row['nama_pegawai'];
+				            $nama_pasien = $row['nama_pasien'];
 				            $jenis_kelamin = $row['jenis_kelamin'];
-				            $jabatan = $row['jabatan'];
-				            $tanggal_lahir = $row['tanggal_lahir'];
+				            $telepon = $row['telepon'];
+				            $jenis_pasien = $row['jenis_pasien'];
+				            $tgl_daftar = $row['tgl_daftar'];
 
 							echo "<tr>";
 								echo "<td>".$no++."</td>";
-								echo "<td>".$nama_pegawai."</td>";
+								echo "<td>".$nama_pasien."</td>";
 								echo "<td>".$jenis_kelamin."</td>";
-								echo "<td>".$jabatan."</td>";
-								echo "<td>".$tanggal_lahir."</td>";
+								echo "<td>".$telepon."</td>";
+								echo "<td>".$telepon."</td>";
+								echo "<td>"; if ($jenis_pasien=="baru") { echo "Pasien Baru"; } "</td>";
 							echo "</tr>";
 			    	} } else { 
 			    		echo "<tr>";

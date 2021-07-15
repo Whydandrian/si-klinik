@@ -82,15 +82,15 @@ $kodeDaftar = $kd . sprintf("%03s", $list);
                     <label for="poli_tujuan" class="form-label">Poli Tujuan</label>
                     <select class="form-select form-select-sm" name="poli_tujuan" id="poli_tujuan">
                       <option>Pilih Poli Tujuan</option>
-                      <option value="">Poli Anak</option>
-                      <option value="">Poli Umum</option>
-                      <option value="">Poli Gigi</option>
-                      <option value="">Poli Kulit & Kelamin</option>
-                      <option value="">Poli Orthopedi</option>
-                      <option value="">Poli Mata</option>
-                      <option value="">Poli Gizi</option>
-                      <option value="">Poli Interna</option>
-                      <option value="">Poli Kandungan</option>
+                      <option value="Poli Anak">Poli Anak</option>
+                      <option value="Poli Umum">Poli Umum</option>
+                      <option value="Poli Gigi">Poli Gigi</option>
+                      <option value="Poli Kulit & Kelamin">Poli Kulit & Kelamin</option>
+                      <option value="Poli Orthopedi">Poli Orthopedi</option>
+                      <option value="Poli Mata">Poli Mata</option>
+                      <option value="Poli Gizi">Poli Gizi</option>
+                      <option value="Poli Interna">Poli Interna</option>
+                      <option value="Poli Kandungan">Poli Kandungan</option>
                     </select>
                   </div>
                   <div class="mb-3">
