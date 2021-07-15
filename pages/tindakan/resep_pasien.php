@@ -32,8 +32,8 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
         <div class="card-header fw-bold fs-5">Pengambilan Resep Pasien
           <?php
           if (isset($_GET['pesan'])) {
-            if ($_GET['pesan'] == "berhasil") {
-              echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>Registrasi pasien berhasil!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+            if ($_GET['pesan'] == "transaksi_berhasil") {
+              echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>Tansaksi biaya obat pasien berhasil!<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
             }
           }
           ?>
@@ -45,7 +45,7 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
             </div>
             <div class="col-auto">
               <span id="kode" class="form-text fs-6">
-              <?= $kodeTransaksi ?>  
+                <?= $kodeTransaksi ?>
               </span>
             </div>
             <div class="col d-flex justify-content-end">

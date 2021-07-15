@@ -43,7 +43,6 @@ if ($_SESSION['level'] != "admin_obat") {
                 <th>Nama Obat</th>
                 <th>Jumlah Obat</th>
                 <th>Total Harga</th>
-                <th>Status</th>
                 <th>Aksi</th>
               </tr>
             </thead>
@@ -65,13 +64,7 @@ if ($_SESSION['level'] != "admin_obat") {
                   <td><?php echo $row['nama_obat']; ?></td>
                   <td><?php echo $row['jumlah']; ?></td>
                   <td><?php echo "Rp " . number_format($row['harga_total'], 0, ",", "."); ?></td>
-                  <td class="text-center">
-                    <?php if ($row['status'] == 1) { ?>
-                      <i class="fas fa-check-square text-success"></i>
-                    <?php } else { ?>
-                      <i class="fas fa-times-circle text-danger fs-5"></i>
-                    <?php } ?>
-                  </td>
+
                   <td>
                     <a href="../obat_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
                     <a href="../obat_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>

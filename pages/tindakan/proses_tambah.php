@@ -1,11 +1,15 @@
 <?php 
 include '../../config/connection.php';
 
-$nama_obat = $_POST['nama_obat'];
-$jenis_obat = $_POST['jenis_obat'];
-// $harga = $_POST['harga'];
-// mysqli_query($koneksi,"insert into obat values('','$nama_obat','$jenis_obat','$harga')");
-mysqli_query($koneksi,"insert into obat values('','$nama_obat','$jenis_obat')");
-header("location:../admin/data_obat.php?pesan=berhasil_tambah");
+$id_transaksi = $_POST['id_transaksi'];
+$kode_pasien = $_POST['kode_pasien'];
+$id_obat = $_POST['id_obat'];
+$harga_obat = $_POST['harga_obat'];
+$jumlah = $_POST['jumlah'];
+$harga_total = $_POST['harga_total'];
+
+mysqli_query($koneksi,"INSERT INTO biaya_pasien VALUES('','$id_transaksi','$kode_pasien','$id_obat','$harga_obat','$jumlah','$harga_total')");
+
+header("location:resep_pasien.php?pesan=transaksi_berhasil");
 
 ?>
