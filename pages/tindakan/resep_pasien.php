@@ -133,8 +133,8 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
               </div>
 
             </div>
-            <button type="submit" class="btn btn-primary">Total</button>
-            <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a>
+            <button type="submit" class="btn btn-warning fs-4 fw-bold">Total</button>
+            <!-- <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a> -->
           </form>
 
         </div>
