@@ -26,9 +26,9 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../pendaftaran/pendaftaran_pasien.php">Pendaftaran Pasien</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../tindakan/resep_pasien.php">Pembuatan Resep</a>
-          </li>
+          </li> -->
         <?php } elseif ($_SESSION['level'] === "admin") { ?>
           <!-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
