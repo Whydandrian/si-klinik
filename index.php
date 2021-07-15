@@ -1,6 +1,6 @@
 <?php include 'layouts/auth/header.php'; ?>
 <div class="container-fluid">
-	<h3 class="d-flex justify-content-center my-4">Login Klinik Inova Medika</h3>
+	<h3 class="d-flex justify-content-center my-4">Login Mini Klinik</h3>
 	<div class="row d-flex justify-content-center my-4">
 		<div class="col-4">
 			<div class="card shadow p-3 mb-5 bg-body rounded">
