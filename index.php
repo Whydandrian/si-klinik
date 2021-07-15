@@ -61,7 +61,7 @@
 					<li class="list-group-item d-flex justify-content-between align-items-start">
 						<div class="ms-2 me-auto">
 							<div class="fw-bold">Login Bag. Penerimaan Obat</div>
-							Username : erikapujirahayu<br>Password : user002
+							Username : salsabila<br>Password : user002
 						</div>
 						<span class="badge bg-primary rounded-pill">14</span>
 					</li>
