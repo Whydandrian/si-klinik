@@ -39,10 +39,17 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
           ?>
         </div>
         <div class="card-body">
-          <div class="row">
+          <div class="row  align-items-center">
+            <div class="col-auto">
+              <label for="kode" class="col-form-label">Kode Transaksi</label>
+            </div>
+            <div class="col-auto">
+              <span id="kode" class="form-text fs-6">
+              <?= $kodeTransaksi ?>  
+              </span>
+            </div>
             <div class="col d-flex justify-content-end">
               <h5 class="text-secondary">Tanggal registrasi : <?= date("d M Y") ?></h5>
-              <input type="text" readonly class="form-control form-control-sm" name="id_transaksi" value="<?= $kodeTransaksi ?>">
             </div>
           </div>
           <form method="POST" action="proses_tambah.php" class="row">
@@ -53,6 +60,7 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                 </div>
                 <div class="card-body">
                   <div class="mb-3">
+                    <input type="hidden" readonly name="id_transaksi" value="<?= $kodeTransaksi ?>">
                     <label for="kode_pasien" class="form-label  fw-bold">Cari Nama Pasien</label>
                     <select class="form-select form-select-sm" name="kode_pasien" id="kode_pasien">
                       <option>Pilih Nama Pasien</option>
@@ -118,14 +126,14 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                     <input type="number" id="harga_obat" name="harga_obat" class="form-control form-control-sm" min="0" onkeypress='return restrictAlphabets(event)'>
                   </div>
                   <div class="mb-3">
-                    <label for="keluhan" class="form-label fs-4 fw-bold text-danger">Total Harga</label>
-                    <input type="text" name="harga_total" id="harga_total" class="form-control form-control-sm fs-4 harga_total" readonly>
+                    <label for="keluhan" class="form-label fs-5 fw-bold">Total Harga</label>
+                    <input type="text" name="harga_total" id="harga_total" class="form-control form-control-sm fs-3 fw-bold text-danger harga_total" readonly>
                   </div>
                 </div>
               </div>
 
             </div>
-            <button type="submit" class="btn btn-primary">Register Pasien</button>
+            <button type="submit" class="btn btn-primary">Total</button>
             <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a>
           </form>
 
