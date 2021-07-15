@@ -4,7 +4,7 @@ $mpdf = new \Mpdf\Mpdf();
 
 include '../../config/connection.php';
 
-$nama_dokumen='hasil-ekspor';
+$nama_dokumen = md5(rand());
 ob_start();
 
 include '../../layouts/auth/header.php';
@@ -19,8 +19,9 @@ include '../../layouts/auth/header.php';
 	    			<td>No</td>
 	    			<td>Nama Pegawai</td>
 	    			<td>Jenis Kelamin</td>
+	    			<td>Agama</td>
 	    			<td>Jabatan</td>
-	    			<td>Tgl. Lahir</td>
+	    			<td>Tempat Lahir</td>
 	    			<td>Tgl. Lahir</td>
 	    		</tr>
 	    	</thead>
@@ -34,16 +35,22 @@ include '../../layouts/auth/header.php';
 
 			        if ($res1->num_rows > 0) {
 				        while ($row = $res1->fetch_assoc()) {
+									setlocale(LC_ALL, 'id-ID', 'id_ID');
 				            $nama_pegawai = $row['nama_pegawai'];
 				            $jenis_kelamin = $row['jenis_kelamin'];
+				            $agama = $row['agama'];
 				            $jabatan = $row['jabatan'];
-				            $tanggal_lahir = $row['tanggal_lahir'];
+										
+				            $tanggal_lahir = strftime("%d %B %Y", strtotime($row['tanggal_lahir']));
+				            $tempat_lahir = $row['tempat_lahir'];
 
 							echo "<tr>";
 								echo "<td>".$no++."</td>";
 								echo "<td>".$nama_pegawai."</td>";
 								echo "<td>".$jenis_kelamin."</td>";
+								echo "<td>".$agama."</td>";
 								echo "<td>".$jabatan."</td>";
+								echo "<td>".$tempat_lahir."</td>";
 								echo "<td>".$tanggal_lahir."</td>";
 							echo "</tr>";
 			    	} } else { 
@@ -62,7 +69,7 @@ $html = ob_get_contents();
 ob_end_clean();
 
 $mpdf->WriteHTML(utf8_encode($html));
-$mpdf->Output(uniqid('laporan data pegawai_').".pdf" ,'D');
+$mpdf->Output($nama_dokumen.".pdf" ,'D');
 clearstatcache();
 $koneksi->close();
 header("location:../admin/data_pegawai.php");
