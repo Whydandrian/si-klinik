@@ -1,7 +1,7 @@
 <!-- Menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container-fluid mx-5">
-    <a class="navbar-brand" href="<?php if ($_SESSION['level'] === "admin") {   } elseif ($_SESSION['level'] === "admin_daftar") {  } elseif ($_SESSION['level'] === "admin_obat") {  } ?>">KLINIK |
+    <a class="navbar-brand" href="<?php if ($_SESSION['level'] === "admin") { echo "../admin/dashboard.php"; } elseif ($_SESSION['level'] === "admin_daftar") { echo "../pendaftaran/pendaftaran_pasien.php"; } elseif ($_SESSION['level'] === "admin_obat") { echo "../tindakan/resep_pasien.php"; } ?>">KLINIK |
       <?php
       if ($_SESSION['level'] === "admin") {
         echo "<span class='badge bg-primary fs-6'>Administrator</span>";
@@ -58,9 +58,9 @@
             <a class="dropdown-item" href="../laporan/laporan.php">Laporan</a>
           </li>
         <?php } elseif ($_SESSION['level'] === "admin_obat") { ?>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../tindakan/resep_pasien.php">Tagihan Pasien</a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="../tindakan/tagihan_pasien.php">Data Tagihan Pasien</a>
           </li>

@@ -138,7 +138,7 @@ $kodeDaftar = $kd . sprintf("%03s", $list);
 
             </div>
             <button type="submit" class="btn btn-primary">Register Pasien</button>
-            <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a>
+            <!-- <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a> -->
           </form>
 
         </div>
