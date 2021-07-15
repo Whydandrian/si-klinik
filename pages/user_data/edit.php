@@ -49,8 +49,8 @@ if ($_SESSION['level'] != "admin") {
               <label for="level" class="form-label">Level</label>
               <select class="form-select form-select-sm" name="level" id="level">
                 <option>Pilih Level User</option>
-                <option value="pegawai" <?php if($level == "pegawai") { echo "selected"; } ?> >Pegawai</option>
-                <option value="pengurus" <?php if($level == "pengurus") { echo "selected"; } ?> >Pengurus</option>
+                <option value="admin_daftar" <?php if($level == "admin_daftar") { echo "selected"; } ?> >Admin Pendaftaran</option>
+                <option value="admin_obat" <?php if($level == "admin_obat") { echo "selected"; } ?> >Admin Bag. Obat</option>
               </select>
             </div>
             <div class="mb-3">

@@ -20,15 +20,6 @@ if ($_SESSION['level'] != "admin") {
 	<div class="row d-flex justify-content-center mt-4 mx-5">
 		<div class="col-4">
 			<div class="card border-primary mb-3">
-				<div class="card-header fw-bold">Data Obat Terakhir</div>
-				<div class="card-body text-primary">
-					<h5 class="card-title">Primary card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-				</div>
-			</div>
-		</div>
-		<div class="col-4">
-			<div class="card border-primary mb-3">
 				<div class="card-header fw-bold">Data Pegawai</div>
 				<div class="card-body text-primary">
 					<h5 class="card-title">Primary card title</h5>

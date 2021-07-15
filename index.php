@@ -41,6 +41,31 @@
 						<button type="submit" class="btn btn-primary" name="btn_login">Login</button>
 					</form>
 				</div>
+				<p class="fw-bold">Informasi Login</p>
+				<p class="fw-normal">Untuk lebih jelasnya, mohon lihat file Readme.txt</p>
+				<ol class="list-group list-group-numbered">
+					<li class="list-group-item d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Login admin</div>
+							Username : administrator<br>Password : admin123
+						</div>
+						<span class="badge bg-primary rounded-pill">14</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Login Bag. Pendaftaran</div>
+							Username : budiutomo<br>Password : user001
+						</div>
+						<span class="badge bg-primary rounded-pill">14</span>
+					</li>
+					<li class="list-group-item d-flex justify-content-between align-items-start">
+						<div class="ms-2 me-auto">
+							<div class="fw-bold">Login Bag. Penerimaan Obat</div>
+							Username : erikapujirahayu<br>Password : user002
+						</div>
+						<span class="badge bg-primary rounded-pill">14</span>
+					</li>
+				</ol>
 			</div>
 		</div>
 	</div>
