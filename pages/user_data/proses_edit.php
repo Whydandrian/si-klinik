@@ -7,7 +7,7 @@ $username = $_POST['username'];
 $level = $_POST['level'];
 $password = md5($_POST['password']); 
 
-mysqli_query($koneksi,"UPDATE user SET nama='$nama', username='$username', password='$level', level='$level' WHERE id='$id'");
+mysqli_query($koneksi,"UPDATE user SET nama='$nama', username='$username', password='$password', level='$level' WHERE id='$id'");
 header("location:../admin/data_user.php?pesan=berhasil_update");
 
 ?>
