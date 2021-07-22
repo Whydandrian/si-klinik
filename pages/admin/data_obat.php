@@ -38,15 +38,16 @@ if ($_SESSION['level'] != "admin") {
             <thead>
               <tr>
                 <th>No</th>
+                <th>Kode Obat</th>
                 <th>Nama Obat</th>
                 <th>Jenis Obat</th>
-                <!-- <th>Harga</th> -->
+                <th>Harga</th>
                 <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $query = "SELECT * FROM obat ORDER BY nama_obat ASC";
+              $query = "SELECT `obat`.*, `jenis_obat`.`nama_jenis_obat` FROM `jenis_obat` INNER JOIN `obat` ON `obat`.`id_jenis_obat` = `jenis_obat`.`id` ORDER BY `obat`.`nama_obat` ASC";
               $result = mysqli_query($koneksi, $query);
               if (!$result) {
                 die("Query Error: " . mysqli_errno($koneksi) .
@@ -57,9 +58,10 @@ if ($_SESSION['level'] != "admin") {
               ?>
                 <tr>
                   <td><?php echo $no; ?></td>
+                  <td><?php echo $row['kode_obat']; ?></td>
                   <td><?php echo $row['nama_obat']; ?></td>
-                  <td><?php echo $row['jenis_obat']; ?></td>
-                  <!-- <td><?php // echo "Rp " . number_format($row['harga'], 0, ",", "."); ?></td> -->
+                  <td><?php echo $row['nama_jenis_obat']; ?></td>
+                  <td><?php echo "Rp " . number_format($row['harga_obat'], 0, ",", "."); ?></td>
                   <td>
                     <a href="../obat_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
                     <a href="../obat_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
