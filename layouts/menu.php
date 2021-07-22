@@ -70,7 +70,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <?php
         $username = $_SESSION['username'];
-          $result = mysqli_query($koneksi, "SELECT `user`.*, `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`foto` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` WHERE `user`.`username`='$username'");
+          $result = mysqli_query($koneksi, "SELECT `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`foto` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` WHERE `user`.`username`='$username'");
           while ($user_data = mysqli_fetch_array($result)) {
             $nama_pegawai = $user_data['nama_pegawai'];
             $foto = $user_data['foto'];
