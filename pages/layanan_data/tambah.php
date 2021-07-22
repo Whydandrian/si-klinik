@@ -32,7 +32,7 @@ if ($_SESSION['level'] != "admin") {
               <input type="number" class="form-control form-control-sm" id="harga_layanan" name="harga_layanan" placeholder="100000" required>
             </div>
             <button type="submit" class="btn btn-primary">Tambah Data</button>
-            <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a>
+            <a href="../admin/data_layanan.php" class="btn btn-warning">Kembali</a>
           </form>
 
         </div>
