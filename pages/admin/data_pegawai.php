@@ -120,7 +120,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <div class="row ms-2">
               <label for="staticEmail" class="col-sm col-form-label fs-5">Jenis Kelamin</label>
               <div class="col-sm-8">
-                <input type="text" readonly class="form-control-plaintext fs-5" id="staticEmail" value="<?= ucfirst($row['jenis_kelamin']) ?>">
+                <input type="text" readonly class="form-control-plaintext fs-5" id="staticEmail" value="<?php if($row['jenis_kelamin']=="L") { echo "Laki-laki"; } else { echo "Perempuan"; } ?>">
               </div>
             </div>
             <div class="row ms-2">
