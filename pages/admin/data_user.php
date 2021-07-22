@@ -39,14 +39,14 @@ if ($_SESSION['level'] != "admin") {
               <tr>
                 <th>No</th>
                 <th>Nama</th>
-                <th>Username</th>
-                <th>Level</th>
+                <th>Jenis Kelamin</th>
+                <th>Jabatan</th>
                 <th>Pilihan</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $query = "SELECT * FROM user ORDER BY id ASC";
+              $query = "SELECT `user`.`id`, `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`jabatan` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` ORDER BY `user`.`id` ASC";
               $result = mysqli_query($koneksi, $query);
               if (!$result) {
                 die("Query Error: " . mysqli_errno($koneksi) .
@@ -58,9 +58,15 @@ if ($_SESSION['level'] != "admin") {
               ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td><?php echo $row['nama']; ?></td>
-                  <td><?php echo $row['username']; ?></td>
-                  <td><?php echo $row['level']; ?></td>
+                  <td><?php echo $row['nama_pegawai']; ?></td>
+                  <td><?php
+                  if ($row['jenis_kelamin'] == "L") {
+                    echo "Laki-laki";
+                  } else {
+                    echo "Perempuan";
+                  }
+                  ?></td>
+                  <td><?php echo $row['jabatan']; ?></td>
                   <td>
                     <a href="../user_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
                     <a href="../user_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
