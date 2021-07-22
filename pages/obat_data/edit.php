@@ -31,7 +31,8 @@ if ($_SESSION['level'] != "admin") {
           while ($obat_data = mysqli_fetch_array($result)) {
             $id = $obat_data['id'];
             $nama_obat = $obat_data['nama_obat'];
-            $jenis_obat = $obat_data['jenis_obat'];
+            $id_jenis_obat = $obat_data['id_jenis_obat'];
+            $harga = $obat_data['harga_obat'];
           }
           ?>
           <form method="POST" action="proses_edit.php">
@@ -42,39 +43,29 @@ if ($_SESSION['level'] != "admin") {
             </div>
             <div class=" mb-3">
             <label for="jenis_obat" class="form-label">Jenis  Obat</label>
-              <select class="form-select form-select-sm" name="jenis_obat" id="jenis_obat">
-                <option >Pilih Jenis Obat</option>
-                <option value="Analgesik" <?php if (strtolower($jenis_obat) == "analgesik") { echo "selected"; } ?>>Analgesik</option>
-                <option value="Antasida" <?php if ($jenis_obat == "antasida") { echo "selected"; } ?>>Antasida</option>
-                <option value="Anticemas" <?php if ($jenis_obat == "anticemas") { echo "selected"; } ?>>Anticemas</option>
-                <option value="Antiaritmia" <?php if ($jenis_obat == "antiaritmia") { echo "selected"; } ?>>Antiaritmia</option>
-                <option value="Antibiotik" <?php if ($jenis_obat == "Antibiotik") { echo "selected"; } ?>>Antibiotik</option>
-                <option value="Antikoagulan" <?php if ($jenis_obat == "Antikoagulan") { echo "selected"; } ?>>Antikoagulan</option>
-                <option value="Antikonvulsan" <?php if ($jenis_obat == "Antikonvulsan") { echo "selected"; } ?>>Antikonvulsan</option>
-                <option value="Antidepresan" <?php if ($jenis_obat == "Antidepresan") { echo "selected"; } ?>>Antidepresan</option>
-                <option value="Antidiare" <?php if ($jenis_obat == "Antidiare") { echo "selected"; } ?>>Antidiare</option>
-                <option value="Antiemetik" <?php if ($jenis_obat == "Antiemetik") { echo "selected"; } ?>>Antiemetik</option>
-                <option value="Antijamur" <?php if ($jenis_obat == "Antijamur") { echo "selected"; } ?>>Antijamur</option>
-                <option value="Antihistamin" <?php if ($jenis_obat == "Antihistamin") { echo "selected"; } ?>>Antihistamin</option>
-                <option value="Antihipertensi" <?php if ($jenis_obat == "Antihipertensi") { echo "selected"; } ?>>Antihipertensi</option>
-                <option value="Anti-inflamasi" <?php if ($jenis_obat == "Anti-inflamasi") { echo "selected"; } ?>>Anti-inflamasi</option>
-                <option value="Antineoplastik" <?php if ($jenis_obat == "Antineoplastik") { echo "selected"; } ?>>Antineoplastik</option>
-                <option value="Antipsikotik" <?php if ($jenis_obat == "Antipsikotik") { echo "selected"; } ?>>Antipsikotik</option>
-                <option value="Antipiretik" <?php if ($jenis_obat == "Antipiretik") { echo "selected"; } ?>>Antipiretik</option>
-                <option value="Antivirus" <?php if ($jenis_obat == "Antivirus") { echo "selected"; } ?>>Antivirus</option>
-                <option value="Beta-blocker" <?php if ($jenis_obat == "Beta-blocker") { echo "selected"; } ?>>Beta-blocker</option>
-                <option value="Bronkodilator" <?php if ($jenis_obat == "Bronkodilator") { echo "selected"; } ?>>Bronkodilator</option>
-                <option value="Kortikosteroid" <?php if ($jenis_obat == "Kortikosteroid") { echo "selected"; } ?>>Kortikosteroid</option>
-                <option value="Sitotoksik" <?php if ($jenis_obat == "Sitotoksik") { echo "selected"; } ?>>Sitotoksik</option>
-                <option value="Dekongestan" <?php if ($jenis_obat == "Dekongestan") { echo "selected"; } ?>>Dekongestan</option>
-                <option value="Ekspektoran" <?php if ($jenis_obat == "Ekspektoran") { echo "selected"; } ?>>Ekspektoran</option>
-                <option value="Obat Tidur" <?php if ($jenis_obat == "Obat Tidur") { echo "selected"; } ?>>Obat Tidur</option>
+            <select class="form-select form-select-sm" name="jenis_obat" id="jenis_obat">
+              <option>Pilih Jenis Obat</option>
+                <?php
+                $qry = "SELECT * FROM jenis_obat ORDER BY nama_jenis_obat ASC";
+                $data = mysqli_query($koneksi, $qry);
+                if (!$data) {
+                  die("Query Error: " . mysqli_errno($koneksi) .
+                    " - " . mysqli_error($koneksi));
+                }
+                $no = 1;
+                while ($jenis_obat = mysqli_fetch_assoc($data)) {
+                ?>
+                  <option value="<?= $jenis_obat['id'] ?>" <?php if($id_jenis_obat === $jenis_obat['id']) { echo "selected"; }?> ><?= $jenis_obat['nama_jenis_obat'] ?></option>
+                <?php
+                  $no++;
+                }
+                ?>
               </select>
             </div>
-            <!-- <div class="mb-3">
-              <label for="harga" class="form-label">Harga Obat</label>
-              <input type="number" class="form-control form-control-sm" id="harga" name="harga" value="<?// $harga; ?>">
-            </div> -->
+            <div class="mb-3">
+              <label for="harga_obat" class="form-label">Harga Obat</label>
+              <input type="number" class="form-control form-control-sm" id="harga_obat" name="harga_obat" value="<?= $harga; ?>">
+            </div>
             <button type="submit" class="btn btn-primary">Update Data</button>
             <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a>
           </form>
