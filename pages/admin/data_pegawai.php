@@ -69,7 +69,7 @@ if ($_SESSION['level'] != "admin") {
                   <td>
                     <a href="#" class="text-info" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $row['id'] ?>"><i class="fas fa-eye"></i></a>
                     <a href="../pegawai_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="../pegawai_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a href="../pegawai_data/hapus.php?id=<?php echo $row['kode_pegawai']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                   </td>
                 </tr>
 
