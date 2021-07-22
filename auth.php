@@ -7,7 +7,7 @@ $username = $_POST['username'];
 $password = md5($_POST['password']);
 
 
-$login = mysqli_query($koneksi,"select * from user where username='$username' and password='$password'");
+$login = mysqli_query($koneksi,"SELECT * FROM user WHERE username='$username' AND password='$password'");
 $cek = mysqli_num_rows($login);
 
 if($cek > 0){
