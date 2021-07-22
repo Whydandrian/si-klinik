@@ -55,6 +55,18 @@ if ($_SESSION['level'] != "admin") {
 
             </div>
             <div class="mb-3">
+              <label for="agama" class="form-label">Agama</label>
+              <select class="form-select form-select-sm" name="agama" id="agama">
+                <option>Pilih Agama</option>
+                <option value="Islam">Islam</option>
+                <option value="Hindu">Hindu</option>
+                <option value="Budha">Budha</option>
+                <option value="Kristen">krister</option>
+                <option value="Katholik">Katholik</option>
+                <option value="Kong Huchu">Kong Huchu</option>
+              </select>
+            </div>
+            <div class="mb-3">
               <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
               <input type="text" class="form-control form-control-sm" id="tempat_lahir" name="tempat_lahir" placeholder="Tempat Lahir">
             </div>
@@ -67,25 +79,14 @@ if ($_SESSION['level'] != "admin") {
               <select class="form-select form-select-sm" name="jabatan" id="jabatan">
                 <option>Pilih Jabatan Pegawai</option>
                 <option value="Admin pendaftaran">Admin Pendaftaran</option>
-                <option value="Admin Obat">Admin Obat</option>
+                <option value="Admin Obat">Admin Pengambilan Obat</option>
                 <option value="Apoteker">Apoteker</option>
                 <option value="Dokter">Dokter</option>
                 <option value="Perawat">Perawat</option>
                 <option value="CS">Cleaning Service</option>
               </select>
             </div>
-            <div class="mb-3">
-              <label for="agama" class="form-label">Agama</label>
-              <select class="form-select form-select-sm" name="agama" id="agama">
-                <option>Pilih Agama</option>
-                <option value="Islam">Islam</option>
-                <option value="Hindu">Hindu</option>
-                <option value="Budha">Budha</option>
-                <option value="Kristen">krister</option>
-                <option value="Katholik">Katholik</option>
-                <option value="Kong Huchu">Kong Huchu</option>
-              </select>
-            </div>
+            
             <div class="mb-3">
               <label for="harga" class="form-label">Pendidikan</label>
               <input type="text" class="form-control form-control-sm" id="pendidikan" name="pendidikan" placeholder="Sarjana">
