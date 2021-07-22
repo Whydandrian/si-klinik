@@ -28,7 +28,7 @@ if ($_SESSION['level'] != "admin") {
               <?php
               $result = mysqli_query($koneksi, "SELECT `pegawai`.`id`, `pegawai`.`kode_pegawai`, `pegawai`.`nama_pegawai` FROM `pegawai`");
               $jsArray = "var prdName = new Array();\n";
-              echo 'Nama Pegawai : <select  class="form-select form-select-sm" name="prdId" onchange="document.getElementById(\'nama\').value = prdName[this.value]">';
+              echo 'Nama Pegawai : <select  class="form-select form-select-sm" name="kode_pegawai" onchange="document.getElementById(\'nama\').value = prdName[this.value]">';
               echo '<option>Pilih Nama Pegawai</option>';
               while ($row = mysqli_fetch_array($result)) {
                 echo '<option value="' . $row['kode_pegawai'] . '">' . $row['nama_pegawai'] . '</option>';
