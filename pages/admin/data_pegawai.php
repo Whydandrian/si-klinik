@@ -63,7 +63,7 @@ if ($_SESSION['level'] != "admin") {
                 <tr>
                   <td><?php echo $no; ?></td>
                   <td><?php echo $row['nama_pegawai']; ?></td>
-                  <td><?php echo strtolower($row['jenis_kelamin']); ?></td>
+                  <td><?php if($row['jenis_kelamin'] ==="L") { echo "Laki-laki"; } else { echo "Perempuan"; } ?></td>
                   <td><?php echo $row['tempat_lahir'] . ', ' . $tgl_lahir; ?></td>
                   <td><?php echo $row['jabatan']; ?></td>
                   <td>
