@@ -62,7 +62,7 @@ if ($_SESSION['level'] != "admin") {
                   <td><?php echo "Rp " . number_format($row['harga_layanan'], 0, ",", "."); ?></td>
                   <td>
                     <a href="../layanan_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="../layanan_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a href="../layanan_data/hapus.php?id=<?php echo $row['kode_layanan']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                   </td>
                 </tr>
 
