@@ -29,7 +29,7 @@ if ($_SESSION['level'] != "admin") {
             </div>
             <div class="mb-3">
               <label for="harga_layanan" class="form-label">Harga Layanan</label>
-              <input type="number" class="form-control form-control-sm" id="harga_layanan" name="harga_layanan" placeholder="100000" required>
+              <input type="number" class="form-control form-control-sm" id="harga_layanan" name="harga_layanan" placeholder="100000" required min="0" max="1000000">
             </div>
             <button type="submit" class="btn btn-primary">Tambah Data</button>
             <a href="../admin/data_layanan.php" class="btn btn-warning">Kembali</a>
