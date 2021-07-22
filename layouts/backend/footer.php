@@ -2,6 +2,9 @@
 <script src="../../assets/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+<script type="text/javascript">
+<?php echo $jsArray; ?>
+</script>
 <script>
     function restrictAlphabets(e) {
         var x = e.which || e.keycode;

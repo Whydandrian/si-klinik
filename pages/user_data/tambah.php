@@ -23,6 +23,24 @@ if ($_SESSION['level'] != "admin") {
         <div class="card-header fw-bold fs-5">Form Tambah User</div>
         <div class="card-body">
           <form method="POST" action="proses_tambah.php">
+
+
+          <?php  
+$result = mysqli_query($koneksi,"SELECT `pegawai`.`id`, `pegawai`.`kode_pegawai`, `pegawai`.`nama_pegawai` FROM `pegawai`");
+$jsArray = "var prdName = new Array();\n";
+echo 'Nama Pegawai : <select name="prdId" onchange="document.getElementById(\'prd_name\').value = prdName[this.value]">';
+echo '<option>-------</option>';
+while ($row = mysqli_fetch_array($result)) {
+    echo '<option value="' . $row['kode_pegawai'] . '">' . $row['kode_pegawai'] . '</option>';
+    $jsArray .= "prdName['" . $row['kode_pegawai'] . "'] = '" . addslashes($row['nama_pegawai']) . "';\n";
+}
+echo '</select>';
+?>
+<br />
+Nama Produk : <input type="text" name="prod_name" id="prd_name"/>
+
+
+
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Nama User</label>
               <input type="text" class="form-control form-control-sm" id="nama" name="nama" placeholder="Nama Lengkap">
@@ -35,8 +53,8 @@ if ($_SESSION['level'] != "admin") {
               <label for="level" class="form-label">Level</label>
               <select class="form-select form-select-sm" name="level" id="level">
                 <option >Pilih Level User</option>
-                <option value="pegawai">Pegawai</option>
-                <option value="pengurus">Pengurus</option>
+                <option value="admin_daftar">Admin Bagian Pendaftaran</option>
+                <option value="admin_obat">Admin Bagian Resep Obat</option>
               </select>
             </div>
             <div class="mb-3">
