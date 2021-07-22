@@ -23,7 +23,7 @@ if ($_SESSION['level'] != "admin") {
         <div class="card-body">
           <form method="POST" action="proses_tambah.php">
             <div class="mb-3">
-              <!-- <input type="hidden" id="kode_layanan" name="kode_layanan" value="<?php //$kodeLayanan?>"> -->
+              <!-- <input type="text" id="kode_layanan" name="kode_layanan" value="<? //$kodeLayanan?>"> -->
               <label for="nama_layanan" class="form-label">Nama Layanan</label>
               <input type="text" class="form-control form-control-sm" id="nama_layanan" name="nama_layanan" placeholder="Nama Layanan" required>
             </div>
