@@ -112,7 +112,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           </div>
           <div class="row">
             <h5 class="card-title  text-center mb-2"><?php echo $row['nama_pegawai'];
-                                                      if (strtolower($row['jenis_kelamin']) == "laki-laki") {
+                                                      if ($row['jenis_kelamin'] === "L") {
                                                         echo " <i class='fas fa-mars text-primary'></i>";
                                                       } else {
                                                         echo "<i class='fas fa-venus text-danger'></i>";
