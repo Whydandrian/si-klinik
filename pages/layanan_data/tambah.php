@@ -11,15 +11,6 @@ if ($_SESSION['status'] != "login") {
 if ($_SESSION['level'] != "admin") {
   header("location:./pages/error404.php?pesan=hak_akses_salah");
 }
-
-$query = mysqli_query($koneksi, "SELECT max(kode_layanan) as kodeTerbesar FROM layanan");
-$data = mysqli_fetch_array($query);
-$kodeLayanan = $data['kodeTerbesar'];
-$urutan = (int) substr($kodeLayanan, 3, 3);
-$urutan++;
-
-$huruf = "LYN";
-$kodeLayanan = $huruf . sprintf("%03s", $urutan);
 ?>
 <div class="container-fluid">
   <div class="row col">
@@ -32,7 +23,7 @@ $kodeLayanan = $huruf . sprintf("%03s", $urutan);
         <div class="card-body">
           <form method="POST" action="proses_tambah.php">
             <div class="mb-3">
-              <input type="hidden" id="kode_layanan" name="kode_layanan" value="<?= $kodeLayanan?>">
+              <!-- <input type="hidden" id="kode_layanan" name="kode_layanan" value="<?php //$kodeLayanan?>"> -->
               <label for="nama_layanan" class="form-label">Nama Layanan</label>
               <input type="text" class="form-control form-control-sm" id="nama_layanan" name="nama_layanan" placeholder="Nama Layanan" required>
             </div>
