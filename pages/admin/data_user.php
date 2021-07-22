@@ -46,7 +46,7 @@ if ($_SESSION['level'] != "admin") {
             </thead>
             <tbody>
               <?php
-              $query = "SELECT `user`.`id`, `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`jabatan` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` ORDER BY `user`.`id` ASC";
+              $query = "SELECT `user`.`id`, `user`.`user_id`, `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`jabatan` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` ORDER BY `user`.`id` ASC";
               $result = mysqli_query($koneksi, $query);
               if (!$result) {
                 die("Query Error: " . mysqli_errno($koneksi) .
@@ -69,7 +69,7 @@ if ($_SESSION['level'] != "admin") {
                   <td><?php echo $row['jabatan']; ?></td>
                   <td>
                     <a href="../user_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="../user_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a href="../user_data/hapus.php?id=<?php echo $row['user_id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                   </td>
                 </tr>
 
