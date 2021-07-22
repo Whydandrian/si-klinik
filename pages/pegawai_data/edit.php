@@ -62,13 +62,13 @@ if ($_SESSION['level'] != "admin") {
               <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
               <div class="row ms-2">
                 <div class="col form-check">
-                  <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="Laki-laki" <?php if( strtolower($jenis_kelamin) === 'laki-laki' ) { echo "checked"; } ?> >
+                  <input class="form-check-input" type="radio" name="jenis_kelamin" id="laki-laki" value="Laki-laki" <?php if( $jenis_kelamin === 'L' ) { echo "checked"; } ?> >
                   <label class="form-check-label" for="laki-laki"> 
                     Laki-Laki
                   </label>
                 </div>
                 <div class="col form-check me-4">
-                  <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="Perempuan" <?php if( strtolower($jenis_kelamin) == "perempuan" ) { echo "checked"; } ?> >
+                  <input class="form-check-input" type="radio" name="jenis_kelamin" id="perempuan" value="Perempuan" <?php if( $jenis_kelamin == "P" ) { echo "checked"; } ?> >
                   <label class="form-check-label" for="perempuan">
                     Perempuan
                   </label>

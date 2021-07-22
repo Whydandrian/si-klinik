@@ -12,7 +12,7 @@ $pendidikan = $_POST['pendidikan'];
 $foto_lama = $_POST['foto_lama'];
 
 if ($_FILES['foto']['name'] == "") {
-  mysqli_query($koneksi, "UPDATE pegawai SET nama_pegawai='$nama_pegawai',jenis_kelamin='$jenis_kelamin',tanggal_lahir='$tanggal_lahir',tempat_lahir='$tempat_lahir',jabatan='$jabatan',agama='$agama',alamat='$alamat',pendidikan='$pendidikan' WHERE id='$id_pegawai'");
+  mysqli_query($koneksi, "UPDATE pegawai SET nama_pegawai='$nama_pegawai',jenis_kelamin='$jenis_kelamin',agama='$agama',tempat_lahir='$tempat_lahir',tanggal_lahir='$tanggal_lahir',jabatan='$jabatan',pendidikan='$pendidikan',alamat='$alamat' WHERE id='$id_pegawai'");
   header("location:../admin/data_pegawai.php?pesan=berhasil_update");
 } else {
   $rand = rand();
@@ -26,7 +26,7 @@ if ($_FILES['foto']['name'] == "") {
 
     $xx = $rand . '_' . $filename;
     move_uploaded_file($_FILES['foto']['tmp_name'], '../../images/' . $rand . '_' . $filename);
-    mysqli_query($koneksi, "UPDATE pegawai SET nama_pegawai='$nama_pegawai',jenis_kelamin='$jenis_kelamin',tanggal_lahir='$tanggal_lahir',tempat_lahir='$tempat_lahir',jabatan='$jabatan',agama='$agama',alamat='$alamat',pendidikan='$pendidikan', foto='$xx' where id='$id'");
+    mysqli_query($koneksi, "UPDATE pegawai SET nama_pegawai='$nama_pegawai',jenis_kelamin='$jenis_kelamin',agama='$agama',tempat_lahir='$tempat_lahir',tanggal_lahir='$tanggal_lahir',jabatan='$jabatan',pendidikan='$pendidikan',alamat='$alamat', foto='$xx' where id='$id'");
     header("location:../admin/data_pegawai.php?pesan=berhasil_update");
   } else {
     header("location:edit.php?pesan=ukuran_salah&id=$id_pegawai");
