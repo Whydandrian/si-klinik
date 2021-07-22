@@ -28,40 +28,30 @@ if ($_SESSION['level'] != "admin") {
               <input type="text" class="form-control form-control-sm" id="nama_obat" name="nama_obat" placeholder="Nama Obat">
             </div>
             <div class="mb-3">
-              <label for="jenis_obat" class="form-label">Jenis  Obat</label>
+              <label for="jenis_obat" class="form-label">Jenis Obat</label>
               <select class="form-select form-select-sm" name="jenis_obat" id="jenis_obat">
-              <option >Pilih Jenis Obat</option>
-                <option value="Analgesik" >Analgesik</option>
-                <option value="Antasida" >Antasida</option>
-                <option value="Anticemas" >Anticemas</option>
-                <option value="Antiaritmia" >Antiaritmia</option>
-                <option value="Antibiotik" >Antibiotik</option>
-                <option value="Antikoagulan" >Antikoagulan</option>
-                <option value="Antikonvulsan" >Antikonvulsan</option>
-                <option value="Antidepresan" >Antidepresan</option>
-                <option value="Antidiare" >Antidiare</option>
-                <option value="Antiemetik" >Antiemetik</option>
-                <option value="Antijamur">Antijamur</option>
-                <option value="Antihistamin" >Antihistamin</option>
-                <option value="Antihipertensi" >Antihipertensi</option>
-                <option value="Anti-inflamasi" >Anti-inflamasi</option>
-                <option value="Antineoplastik">Antineoplastik</option>
-                <option value="Antipsikotik">Antipsikotik</option>
-                <option value="Antipiretik">Antipiretik</option>
-                <option value="Antivirus" >Antivirus</option>
-                <option value="Beta-blocker">Beta-blocker</option>
-                <option value="Bronkodilator" >Bronkodilator</option>
-                <option value="Kortikosteroid" >Kortikosteroid</option>
-                <option value="Sitotoksik" >Sitotoksik</option>
-                <option value="Dekongestan" >Dekongestan</option>
-                <option value="Ekspektoran" >Ekspektoran</option>
-                <option value="Obat Tidur">Obat Tidur</option>
+              <option>Pilih Jenis Obat</option>
+                <?php
+                $qry = "SELECT * FROM jenis_obat ORDER BY nama_jenis_obat ASC";
+                $data = mysqli_query($koneksi, $qry);
+                if (!$data) {
+                  die("Query Error: " . mysqli_errno($koneksi) .
+                    " - " . mysqli_error($koneksi));
+                }
+                $no = 1;
+                while ($jenis_obat = mysqli_fetch_assoc($data)) {
+                ?>
+                  <option value="<?= $jenis_obat['id'] ?>"><?= $jenis_obat['nama_jenis_obat'] ?></option>
+                <?php
+                  $no++;
+                }
+                ?>
               </select>
             </div>
-            <!-- <div class="mb-3">
-              <label for="harga" class="form-label">Harga Obat</label>
-              <input type="number" class="form-control form-control-sm" id="harga" name="harga" placeholder="100000">
-            </div> -->
+            <div class="mb-3">
+              <label for="harga_obat" class="form-label">Harga Obat</label>
+              <input type="number" class="form-control form-control-sm" id="harga_obat" name="harga_obat" placeholder="100000" min="0" max="1000000">
+            </div>
             <button type="submit" class="btn btn-primary">Tambah Data</button>
             <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a>
           </form>
