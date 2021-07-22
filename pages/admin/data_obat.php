@@ -64,7 +64,7 @@ if ($_SESSION['level'] != "admin") {
                   <td><?php echo "Rp " . number_format($row['harga_obat'], 0, ",", "."); ?></td>
                   <td>
                     <a href="../obat_data/edit.php?id=<?php echo $row['id']; ?>" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                    <a href="../obat_data/hapus.php?id=<?php echo $row['id']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a href="../obat_data/hapus.php?id=<?php echo $row['kode_obat']; ?>" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                   </td>
                 </tr>
 
