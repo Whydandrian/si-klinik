@@ -32,7 +32,6 @@ if ($_SESSION['level'] != "admin") {
             $id = $obat_data['id'];
             $nama_obat = $obat_data['nama_obat'];
             $jenis_obat = $obat_data['jenis_obat'];
-            $harga = $obat_data['harga'];
           }
           ?>
           <form method="POST" action="proses_edit.php">
@@ -45,7 +44,7 @@ if ($_SESSION['level'] != "admin") {
             <label for="jenis_obat" class="form-label">Jenis  Obat</label>
               <select class="form-select form-select-sm" name="jenis_obat" id="jenis_obat">
                 <option >Pilih Jenis Obat</option>
-                <option value="Analgesik" <?php if ($jenis_obat == "analgesik") { echo "selected"; } ?>>Analgesik</option>
+                <option value="Analgesik" <?php if (strtolower($jenis_obat) == "analgesik") { echo "selected"; } ?>>Analgesik</option>
                 <option value="Antasida" <?php if ($jenis_obat == "antasida") { echo "selected"; } ?>>Antasida</option>
                 <option value="Anticemas" <?php if ($jenis_obat == "anticemas") { echo "selected"; } ?>>Anticemas</option>
                 <option value="Antiaritmia" <?php if ($jenis_obat == "antiaritmia") { echo "selected"; } ?>>Antiaritmia</option>

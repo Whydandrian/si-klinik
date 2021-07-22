@@ -99,7 +99,6 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                       while ($row = mysqli_fetch_assoc($result)) {
                         $harga = $row['harga'];
                       ?>
-
                         <option value="<?= $row['id'] ?>"><?= $row['nama_obat'] ?></option>
                       <?php
                         $no++;
@@ -107,6 +106,23 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                       ?>
                     </select>
                   </div>
+                  <!-- <div class="mb-3">
+                    <label for="harga_layanan" class="form-label fw-bold">Harga Layanan</label>
+                    <?php
+
+                                        // include '../../config/connection.php';
+
+                                        // $id = $_GET['id'];
+
+                                        // $result = mysqli_query($koneksi, "SELECT `pendaftaran`.`id`, `pendaftaran`.`kode_daftar`, `pendaftaran`.`kode_pasien`, `pasien`.`nama_pasien`, `layanan`.`nama_layanan`, `layanan`.`harga_layanan` FROM `layanan` INNER JOIN `pendaftaran` ON `pendaftaran`.`kode_layanan` = `layanan`.`kode_layanan` INNER JOIN `pasien` ON `pendaftaran`.`kode_pasien` = `pasien`.`kode_pasien` WHERE `pasien`.`kode_pasien` = $kode_pasien");
+
+                                        // while ($layanan_data = mysqli_fetch_array($result)) {
+                                        //   $harga_layanan = $layanan_data['harga_layanan'];
+                                        // }
+                                        ?>
+
+                    <input type="number" id="harga_layanan" name="harga_layanan" class="form-control form-control-sm" value="">
+                  </div> -->
 
                 </div>
               </div>
