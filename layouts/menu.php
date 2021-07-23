@@ -1,7 +1,13 @@
 <!-- Menu -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
   <div class="container-fluid mx-5">
-    <a class="navbar-brand" href="<?php if ($_SESSION['level'] === "admin") { echo "../admin/dashboard.php"; } elseif ($_SESSION['level'] === "admin_daftar") { echo "../pendaftaran/pendaftaran_pasien.php"; } elseif ($_SESSION['level'] === "admin_obat") { echo "../tindakan/resep_pasien.php"; } ?>">KLINIK |
+    <a class="navbar-brand" href="<?php if ($_SESSION['level'] === "admin") {
+                                    echo "../admin/dashboard.php";
+                                  } elseif ($_SESSION['level'] === "admin_daftar") {
+                                    echo "../pendaftaran/pendaftaran_pasien.php";
+                                  } elseif ($_SESSION['level'] === "admin_obat") {
+                                    echo "../tindakan/resep_pasien.php";
+                                  } ?>">KLINIK |
       <?php
       if ($_SESSION['level'] === "admin") {
         echo "<span class='badge bg-primary fs-6'>Administrator</span>";
@@ -66,25 +72,26 @@
           </li>
         <?php } ?>
       </ul>
-      <li class="nav-item dropdown d-flex">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <li class="nav-item dropdown d-flex align-items-center">
         <?php
         $username = $_SESSION['username'];
-          $result = mysqli_query($koneksi, "SELECT `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`foto` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` WHERE `user`.`username`='$username'");
-          while ($user_data = mysqli_fetch_array($result)) {
-            $nama_pegawai = $user_data['nama_pegawai'];
-            $foto = $user_data['foto'];
-          }
-          ?>
-        <?= $nama_pegawai;?>
+        $result = mysqli_query($koneksi, "SELECT `pegawai`.`nama_pegawai`, `pegawai`.`jenis_kelamin`, `pegawai`.`foto` FROM `pegawai` INNER JOIN `user` ON `user`.`kode_pegawai` = `pegawai`.`kode_pegawai` WHERE `user`.`username`='$username'");
+        while ($user_data = mysqli_fetch_array($result)) {
+          $nama_pegawai = $user_data['nama_pegawai'];
+          $foto = $user_data['foto'];
+        }
+        ?>
+        <img src="../../images/<?= $foto; ?>" class="rounded mx-auto d-block rounded-circle" alt="<?= $nama_pegawai; ?>" style="width: 20px; height:20px;">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <?= $nama_pegawai; ?>
         </a>
         <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="../pages/admin/profile.php">Profile User <i class="fas fa-user-circle text-info"></i></a></li>
+          <li><a class="dropdown-item" href="../admin/profile.php">Profile User <i class="fas fa-user-circle text-info"></i></a></li>
           <li>
             <hr class="dropdown-divider bg-primary">
-            <li><a class="dropdown-item" href="../../logout.php">Logout <i class="fas fa-sign-out-alt text-danger"></i></a></li>
-          </li>
-        </ul>
+          <li><a class="dropdown-item" href="../../logout.php">Logout <i class="fas fa-sign-out-alt text-danger"></i></a></li>
+      </li>
+      </ul>
       </li>
     </div>
   </div>
