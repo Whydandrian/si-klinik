@@ -43,19 +43,19 @@
             </ul>
           </li> -->
           <li class="nav-item">
-            <a class="dropdown-item" href="../admin/data_user.php">Data User</a>
+            <a class="dropdown-item" href="../admin/data_user.php">Data User <i class="fas fa-user-friends text-info"></i></a>
           </li>
           <li class="nav-item">
-            <a class="dropdown-item" href="../admin/data_obat.php">Data Obat</a>
+            <a class="dropdown-item" href="../admin/data_obat.php">Data Obat <i class="fas fa-pills text-info"></i></a>
           </li>
           <li class="nav-item">
-            <a class="dropdown-item" href="../admin/data_layanan.php">Data Layanan</a>
+            <a class="dropdown-item" href="../admin/data_layanan.php">Data Layanan <i class="fas fa-hospital text-info"></i></a>
           </li>
           <li class="nav-item">
-            <a class="dropdown-item" href="../admin/data_pegawai.php">Data Pegawai</a>
+            <a class="dropdown-item" href="../admin/data_pegawai.php">Data Pegawai <i class="fas fa-people-arrows text-warning"></i></a>
           </li>
           <li class="nav-item">
-            <a class="dropdown-item" href="../laporan/laporan.php">Laporan</a>
+            <a class="dropdown-item" href="../laporan/laporan.php">Laporan <i class="fas fa-file-pdf text-info"></i></a>
           </li>
         <?php } elseif ($_SESSION['level'] === "admin_obat") { ?>
           <!-- <li class="nav-item">
@@ -78,12 +78,12 @@
           ?>
         <?= $nama_pegawai;?>
         </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="../../logout.php">Logout</a></li>
+        <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="#">Profile User <i class="fas fa-user-circle text-info"></i></a></li>
           <li>
-            <hr class="dropdown-divider">
+            <hr class="dropdown-divider bg-primary">
+            <li><a class="dropdown-item" href="../../logout.php">Logout <i class="fas fa-sign-out-alt text-danger"></i></a></li>
           </li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
         </ul>
       </li>
     </div>
