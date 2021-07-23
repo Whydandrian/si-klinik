@@ -79,7 +79,7 @@
         <?= $nama_pegawai;?>
         </a>
         <ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">Profile User <i class="fas fa-user-circle text-info"></i></a></li>
+          <li><a class="dropdown-item" href="../pages/admin/profile.php">Profile User <i class="fas fa-user-circle text-info"></i></a></li>
           <li>
             <hr class="dropdown-divider bg-primary">
             <li><a class="dropdown-item" href="../../logout.php">Logout <i class="fas fa-sign-out-alt text-danger"></i></a></li>
