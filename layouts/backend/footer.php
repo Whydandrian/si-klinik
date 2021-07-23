@@ -3,7 +3,7 @@
 <script src="../../assets/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
 <script type="text/javascript">
-<?php echo $jsArray; ?>
+    <?php echo $jsArray; ?>
 </script>
 <script>
     function restrictAlphabets(e) {
@@ -15,14 +15,15 @@
     }
     $(document).ready(function() {
         let data = 0;
+        $('#data-pasien-lama').hide();
         $("#harga_total").val(parseInt(data));
 
         $("#harga_obat").keyup(function() {
             var hargaObat = $("#harga_obat").val();
             var jumlah = $("#jumlah").val();
 
-                var total = parseInt(hargaObat) * parseInt(jumlah);
-                $("#harga_total").val(total);
+            var total = parseInt(hargaObat) * parseInt(jumlah);
+            $("#harga_total").val(total);
 
         });
 
@@ -32,6 +33,18 @@
         });
 
         $('#example').DataTable();
+
+        $('input[type=radio][name=pegawai_pilihan]').change(function() {
+            if (this.value == 1) {
+                $('#data-pasien-lama').show();
+                $('#data-pasien-baru').hide();
+            } else if (this.value == 2) {
+                $('#data-pasien-baru').show();
+                $('#data-pasien-lama').hide();
+            }
+        });
+
+
 
     });
 

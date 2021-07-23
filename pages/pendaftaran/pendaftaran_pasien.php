@@ -12,15 +12,13 @@ if ($_SESSION['level'] != "admin_daftar") {
   header("location:./pages/error404.php?pesan=hak_akses_salah");
 }
 
-
-$qry = mysqli_query($koneksi, "SELECT max(kode_daftar) as kodeDaftar FROM pendaftaran");
-$dataDaftar = mysqli_fetch_array($qry);
-$kodeDaftar = $dataDaftar['kodeDaftar'];
-$list = (int) substr($kodeDaftar, 3, 3);
+$qry = mysqli_query($koneksi, "SELECT max(kode_pasien) as kodePasien FROM pasien");
+$pasien = mysqli_fetch_array($qry);
+$kodePasien = $pasien['kodePasien'];
+$list = (int) substr($kodePasien, 3, 3);
 $list++;
-$kd = "REG";
-$kodeDaftar = $kd . sprintf("%03s", $list);
-
+$kd = "PSN";
+$kodePasien = $kd . sprintf("%03s", $list);
 ?>
 <div class="container-fluid">
   <div class="row col">
@@ -41,21 +39,35 @@ $kodeDaftar = $kd . sprintf("%03s", $list);
         <div class="card-body">
           <div class="row">
             <div class="col d-flex justify-content-end">
+              <input type="text" readonly value="<?= $kodePasien ?>" name="kode_pasien" id="kode_pasien" class="kode-pasien">
               <h5 class="text-secondary">Tanggal registrasi : <?= date("d M Y") ?></h5>
             </div>
           </div>
           <form method="POST" action="proses_tambah.php" class="row">
             <div class="col-5">
               <div class="card border-0">
-                <div class="card-header fs-5 bg-info text-white">
+                <div class="card-header fs-5 bg-info text-white d-flex justify-content-between">
                   Data Pasien
                 </div>
                 <div class="card-body">
-                  <div class="mb-3">
-                    <input type="hidden" readonly name="kode_daftar" value="<?= $kodeDaftar ?>">
-                    <label for="kode_pasien" class="form-label">Nama Pasien</label>
-                    <select class="form-select form-select-sm" name="kode_pasien" id="kode_pasien">
-                      <option>Pilih Nama Pasien</option>
+                  <div class="pilihan-pegawai">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="pegawai_pilihan" id="flexRadioDefault1" value="1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Data Pegawai Lama Klik disini!
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="pegawai_pilihan" id="flexRadioDefault2" value="2" checked="checked">
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        Tambah Data Pegawai Baru Klik disini!
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-3" id="data-pasien-lama">
+                    <label for="kode_poli" class="form-label">Nama Pasien Lama</label>
+                    <select class="form-select form-select-sm" name="kode_poli" id="kode_poli">
+                      <option>Pilih Nama Pasien Terdaftar</option>
                       <?php
                       $query = "SELECT * FROM pasien ORDER BY nama_pasien ASC";
                       $result = mysqli_query($koneksi, $query);
@@ -63,59 +75,21 @@ $kodeDaftar = $kd . sprintf("%03s", $list);
                         die("Query Error: " . mysqli_errno($koneksi) .
                           " - " . mysqli_error($koneksi));
                       }
-
                       $no = 1;
                       while ($row = mysqli_fetch_assoc($result)) {
                       ?>
-                        <option value="<?= $row['kode_pasien'] ?>"><?= $row['kode_pasien'] ?> - <?= $row['nama_pasien'] ?></option>
+                        <option value="<?= $row['kode_pasien'] ?>"><?= $row['nama_pasien'] ?></option>
                       <?php
                         $no++;
                       }
                       ?>
                     </select>
                   </div>
-                  <div class="mb-3">
-                    <label for="btn_pasien" class="form-label">pasien baru?</label>
-                    <a href="../pasien_data/tambah.php" id="btn_pasien" class="btn btn-sm btn-warning">Tambah Data Pasien</a>
+                  <div class="mb-3" id="data-pasien-baru">
+                    <label for="kode_pasien" class="form-label">Nama Pasien</label>
+                    <input type="text" class="form-control form-control-sm" name="nama_pegawai" id="nama_pegawai">
                   </div>
-                  <div class="mb-3">
-                    <label for="poli_tujuan" class="form-label">Poli Tujuan</label>
-                    <select class="form-select form-select-sm" name="poli_tujuan" id="poli_tujuan">
-                      <option>Pilih Poli Tujuan</option>
-                      <option value="Poli Anak">Poli Anak</option>
-                      <option value="Poli Umum">Poli Umum</option>
-                      <option value="Poli Gigi">Poli Gigi</option>
-                      <option value="Poli Kulit & Kelamin">Poli Kulit & Kelamin</option>
-                      <option value="Poli Orthopedi">Poli Orthopedi</option>
-                      <option value="Poli Mata">Poli Mata</option>
-                      <option value="Poli Gizi">Poli Gizi</option>
-                      <option value="Poli Interna">Poli Interna</option>
-                      <option value="Poli Kandungan">Poli Kandungan</option>
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="kode_layanan" class="form-label">Layanan Pasien</label>
-                    <select class="form-select form-select-sm" name="kode_layanan" id="kode_layanan">
-                      <option>Pilih Layanan Pasien</option>
 
-                      <?php
-                      $query = "SELECT * FROM layanan ORDER BY nama_layanan ASC";
-                      $result = mysqli_query($koneksi, $query);
-                      if (!$result) {
-                        die("Query Error: " . mysqli_errno($koneksi) .
-                          " - " . mysqli_error($koneksi));
-                      }
-
-                      $no = 1;
-                      while ($row = mysqli_fetch_assoc($result)) {
-                      ?>
-                        <option value="<?= $row['kode_layanan'] ?>"><?= $row['nama_layanan'] ?></option>
-                      <?php
-                        $no++;
-                      }
-                      ?>
-                    </select>
-                  </div>
                 </div>
               </div>
             </div>
@@ -126,12 +100,54 @@ $kodeDaftar = $kd . sprintf("%03s", $list);
                 </div>
                 <div class="card-body">
                   <div class="mb-3">
+                    <label for="kode_poli" class="form-label">Poli Tujuan</label>
+                    <select class="form-select form-select-sm" name="kode_poli" id="kode_poli">
+                      <option>Pilih Tujuan Poli</option>
+                      <?php
+                      $query = "SELECT * FROM poli_tujuan ORDER BY nama_poli ASC";
+                      $result = mysqli_query($koneksi, $query);
+                      if (!$result) {
+                        die("Query Error: " . mysqli_errno($koneksi) .
+                          " - " . mysqli_error($koneksi));
+                      }
+                      $no = 1;
+                      while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                        <option value="<?= $row['kode_poli'] ?>"><?= $row['nama_poli'] ?></option>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label for="kode_layanan" class="form-label">Layanan Pasien</label>
+                    <select class="form-select form-select-sm" name="kode_layanan" id="kode_layanan">
+                      <option>Pilih Layanan Pasien</option>
+                      <?php
+                      $query = "SELECT * FROM layanan ORDER BY nama_layanan ASC";
+                      $result = mysqli_query($koneksi, $query);
+                      if (!$result) {
+                        die("Query Error: " . mysqli_errno($koneksi) .
+                          " - " . mysqli_error($koneksi));
+                      }
+                      $no = 1;
+                      while ($row = mysqli_fetch_assoc($result)) {
+                      ?>
+                        <option value="<?= $row['kode_layanan'] ?>"><?= $row['nama_layanan'] ?></option>
+                      <?php
+                        $no++;
+                      }
+                      ?>
+                    </select>
+                  </div>
+                  <div class="mb-3">
                     <label for="keluhan" class="form-label">Keluhan Pasien</label>
-                    <textarea name="keluhan" id="keluhan" class="form-control form-control-sm" cols="30" rows="3" placeholder="Tulis keluhan pasien lengkap"></textarea>
+                    <textarea name="keluhan" id="keluhan" class="form-control form-control-sm" cols="15" rows="2" placeholder="Tulis keluhan pasien lengkap"></textarea>
                   </div>
                   <div class="mb-3">
                     <label for="keterangan" class="form-label">Keterangan Tambahan</label>
-                    <textarea name="keterangan" id="keterangan" class="form-control form-control-sm" cols="30" rows="3" placeholder="Isikan keterangan spesifik"></textarea>
+                    <textarea name="keterangan" id="keterangan" class="form-control form-control-sm" cols="15" rows="2" placeholder="Isikan keterangan spesifik"></textarea>
                   </div>
                 </div>
               </div>
