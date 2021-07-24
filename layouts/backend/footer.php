@@ -2,8 +2,24 @@
 <script src="../../assets/js/jquery.dataTables.min.js"></script>
 <script src="../../assets/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+
 <script type="text/javascript">
     <?php echo $jsArray; ?>
+
+    function changeValue(nim) {
+        document.getElementById('psn_nama').value = dtMhs[nim].nama_pasien;
+        document.getElementById('psn_kode').value = dtMhs[nim].kode_pasien;
+        document.getElementById('almt').value = dtMhs[nim].alamat;
+    };
+
+    function sweetAlert() {
+        Swal.fire(
+            'Informasi Pendaftaran',
+            'Berhasil Registrasi Pasien!',
+            'success'
+        )
+    }
 </script>
 <script>
     function restrictAlphabets(e) {
@@ -14,6 +30,7 @@
             return false;
     }
     $(document).ready(function() {
+        $('#nama_pasien').focus();
         let data = 0;
         $('#data-pasien-lama').hide();
         $("#harga_total").val(parseInt(data));
@@ -44,7 +61,47 @@
             }
         });
 
+        $(".tombol-simpan").click(function() {
+            let nama_pasien = $('#nama_pasien').val();
+            let nik_ktp = $('#nik_ktp').val();
+            let golongan_darah = $('#golongan_darah').val();
+            let jenis_kelamin = $('#jenis_kelamin').val();
+            let jenis_pasien = $('#jenis_pasien').val();
+            let telepon = $('#telepon').val();
+            let alamat_pasien = $('#alamat_pasien').val();
 
+            if (nama_pasien != "" && nik_ktp != "" && golongan_darah != "" && jenis_kelamin != "" && jenis_pasien != "" && telepon != "" && alamat_pasien != "") {
+                $.ajax({
+                type: 'POST',
+                url: "proses_tambah.php",
+                data: {
+					nama_pasien: nama_pasien,
+					nik_ktp: nik_ktp,
+					phone: phone,
+					city: city				
+				},
+				cache: false,
+                success: function() {
+                    
+                    Swal.fire(
+                        'Informasi Pendaftaran',
+                        'Berhasil Registrasi Pasien!',
+                        'success'
+                    )
+
+                }
+            });
+
+            } else {
+                Swal.fire(
+                    'Validasi Input Data',
+                    'Input data anda salah. Mohon periksa kembali!',
+                    'error'
+                )
+            }
+            // var data = $('.form-user').serialize();
+            
+        });
 
     });
 
