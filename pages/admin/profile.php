@@ -7,9 +7,9 @@ if ($_SESSION['level'] == "") {
 if ($_SESSION['status'] != "login") {
   header("location:index.php?pesan=belum_login");
 }
-if ($_SESSION['level'] != "admin") {
-  header("location:./pages/error404.php?pesan=hak_akses_salah");
-}
+// if ($_SESSION['level'] != "admin") {
+//   header("location:./pages/error404.php?pesan=hak_akses_salah");
+// }
 
 
 ?>
