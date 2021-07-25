@@ -64,8 +64,8 @@ if ($_SESSION['level'] != "admin_daftar") {
                   <td><?php echo $no; ?></td>
                   <td><?php echo $row['kode_pasien']; ?></td>
                   <td><?php echo $row['nama_pasien']; ?></td>
-                  <td><?php echo $row['jenis_kelamin']; ?></td>
-                  <td><?php echo $row['jenis_pasien']; ?></td>
+                  <td><?php if($row['jenis_kelamin']=="L") { echo "Laki-laki"; }else{ echo"Perempuan"; } ?></td>
+                  <td><?php if($row['jenis_pasien']=="1") { echo "Pasien Baru"; }else{ echo"Pasien Lama"; } ?></td>
                   <td><?php echo $row['telepon']; ?></td>
                   <td>
                     <a href="#" class="text-info" data-bs-toggle="modal" data-bs-target="#exampleModal<?= $row['kode_pasien'] ?>"><i class="fas fa-eye"></i></a>
@@ -87,7 +87,7 @@ if ($_SESSION['level'] != "admin_daftar") {
 </div>
 
 <?php
-$query = "SELECT `pendaftaran`.*, `layanan`.`nama_layanan`, `layanan`.`harga_layanan`, `pasien`.`nama_pasien`, `pasien`.`jenis_kelamin`, `pasien`.`golongan_darah`, `pasien`.`telepon`, `pasien`.`jenis_pasien`, `pasien`.`alamat_pasien` FROM `layanan` INNER JOIN `pendaftaran` ON `pendaftaran`.`kode_layanan` = `layanan`.`kode_layanan` INNER JOIN `pasien` ON `pendaftaran`.`kode_pasien` = `pasien`.`kode_pasien`";
+$query = "SELECT `pendaftaran`.*, `layanan`.`nama_layanan`, `layanan`.`harga_layanan`, `pasien`.`nama_pasien`, `pasien`.`jenis_kelamin`, `pasien`.`golongan_darah`, `pasien`.`telepon`, `pasien`.`jenis_pasien`, `pasien`.`alamat` FROM `layanan` INNER JOIN `pendaftaran` ON `pendaftaran`.`kode_layanan` = `layanan`.`kode_layanan` INNER JOIN `pasien` ON `pendaftaran`.`kode_pasien` = `pasien`.`kode_pasien`";
 $result = mysqli_query($koneksi, $query);
 if (!$result) {
   die("Query Error: " . mysqli_errno($koneksi) .
@@ -97,7 +97,7 @@ if (!$result) {
 $no = 1;
 while ($row = mysqli_fetch_assoc($result)) {
   setlocale(LC_ALL, 'id-ID', 'id_ID');
-  $tgl = strftime("%d %B %Y", strtotime($row['tgl_daftar']));
+  $tgl = strftime("%d %B %Y", strtotime($row['tgl_pendaftaran']));
 ?>
   <div class="modal fade" id="exampleModal<?= $row['kode_pasien'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -113,7 +113,7 @@ while ($row = mysqli_fetch_assoc($result)) {
           <div class="row">
             <label for="staticEmail" class="col-4 col-form-label">Jenis Kelamin</label>
             <div class="col">
-              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?= $row['jenis_kelamin']; ?>">
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?php if($row['jenis_kelamin']=="L") { echo "Laki-laki"; }else{ echo"Perempuan"; } ?>">
             </div>
           </div>
           <div class="row">
@@ -138,7 +138,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <label for="staticEmail" class="col-4 col-form-label">Alamat</label>
             <div class="col">
               <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<?= $row['jenis_kelamin']; ?>">
-              <textarea name="" id="" readonly class="form-control-plaintext" cols="15" rows="3"><?= $row['alamat_pasien']; ?></textarea>
+              <textarea name="" id="" readonly class="form-control-plaintext" cols="15" rows="3"><?= $row['alamat']; ?></textarea>
             </div>
           </div>
           <div class="mb-3 row d-flex justify-content-center fs-5 fw-bold">

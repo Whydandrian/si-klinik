@@ -11,6 +11,12 @@
         document.getElementById('psn_nama').value = dtMhs[nim].nama_pasien;
         document.getElementById('psn_kode').value = dtMhs[nim].kode_pasien;
         document.getElementById('almt').value = dtMhs[nim].alamat;
+        document.getElementById('tlp').value = dtMhs[nim].telepon;
+        if (dtMhs[nim].jenis_kelamin == "L") {
+            document.getElementById('jns_kelamin').value = "Laki-laki";
+        } else {
+            document.getElementById('jns_kelamin').value = "Perempuan";
+        }
     };
 
     function sweetAlert() {
@@ -62,45 +68,76 @@
         });
 
         $(".tombol-simpan").click(function() {
-            let nama_pasien = $('#nama_pasien').val();
-            let nik_ktp = $('#nik_ktp').val();
-            let golongan_darah = $('#golongan_darah').val();
-            let jenis_kelamin = $('#jenis_kelamin').val();
-            let jenis_pasien = $('#jenis_pasien').val();
-            let telepon = $('#telepon').val();
-            let alamat_pasien = $('#alamat_pasien').val();
+            // Property data pasien dan pendaftaran
+            var nama_pasien = $('#nama_pasien').val();
+            var nik_ktp = $('#nik_ktp').val();
+            var golongan_darah = $('#golongan_darah').val();
+            var jenis_kelamin = $('#jenis_kelamin').val();
+            var jenis_pasien = $('#jenis_pasien').val();
+            var telepon = $('#telepon').val();
+            var alamat_pasien = $('#alamat_pasien').val();
 
-            if (nama_pasien != "" && nik_ktp != "" && golongan_darah != "" && jenis_kelamin != "" && jenis_pasien != "" && telepon != "" && alamat_pasien != "") {
-                $.ajax({
-                type: 'POST',
-                url: "proses_tambah.php",
-                data: {
-					nama_pasien: nama_pasien,
-					nik_ktp: nik_ktp,
-					phone: phone,
-					city: city				
-				},
-				cache: false,
-                success: function() {
-                    
+            var kode_pasien = $('#kd_pasien').val();
+            var kode_poli = $('#kode_poli').val();
+            var kode_layanan = $('#kode_layanan').val();
+            var keluhan = $('#keluhan').val();
+
+            // Cek apakah data pasien lama atau pasien baru
+            if ($("#cek_pegawai_baru").is(":checked")) {
+                // && kode_poli != "" && kode_layanan != "" && keluhan != ""
+                if (nama_pasien != "" && nik_ktp != "" && golongan_darah != "" && jenis_kelamin != "" && jenis_pasien != "" && telepon != "" && alamat_pasien != "" && kode_poli != "" && kode_layanan != "" && keluhan != "") {
+                    var data = $('.form-user').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url: "proses_tambah.php",
+                        data: data,
+                        cache: false,
+                        success: function() {
+                            setTimeout(function() {
+                                Swal.fire(
+                                    'INFORMASI ADMIN',
+                                    'Data Pasien Berhasil ditambahkan!',
+                                    'success'
+                                );
+                                document.location.reload();
+                            }, 1200);
+                        }
+                    });
+
+                } else {
                     Swal.fire(
-                        'Informasi Pendaftaran',
-                        'Berhasil Registrasi Pasien!',
-                        'success'
+                        'INFORMASI ADMIN',
+                        'Mohon periksa data registrasi pasien kembali!',
+                        'error'
                     )
-
                 }
-            });
-
-            } else {
-                Swal.fire(
-                    'Validasi Input Data',
-                    'Input data anda salah. Mohon periksa kembali!',
-                    'error'
-                )
+            } else if ($("#cek_pegawai_lama").is(":checked")) {
+                if (kode_pasien != "" && kode_poli != "" && kode_layanan != "" && keluhan != "") {
+                    var data = $('.form-user').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url: "tambah_pendaftaran.php",
+                        data: data,
+                        cache: false,
+                        success: function() {
+                            setTimeout(function() {
+                                Swal.fire(
+                                    'INFORMASI ADMIN',
+                                    'Data Pasien Berhasil ditambahkan!',
+                                    'success'
+                                );
+                                document.location.reload();
+                            }, 1200);
+                        }
+                    });
+                } else {
+                    Swal.fire(
+                        'INFORMASI ADMIN',
+                        'Mohon periksa data registrasi pasien kembali!',
+                        'error'
+                    )
+                }
             }
-            // var data = $('.form-user').serialize();
-            
         });
 
     });
