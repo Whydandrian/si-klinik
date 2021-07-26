@@ -13,7 +13,7 @@ if ($_SESSION['level'] != "admin_obat") {
 }
 
 
-$qry = mysqli_query($koneksi, "SELECT max(id_transaksi) as kodeTransaksi FROM biaya_pasien");
+$qry = mysqli_query($koneksi, "SELECT max(kode_transaksi) as kodeTransaksi FROM biaya_pasien");
 $dataDaftar = mysqli_fetch_array($qry);
 $kodeTransaksi = $dataDaftar['kodeTransaksi'];
 $list = (int) substr($kodeTransaksi, 5, 3);
@@ -45,7 +45,7 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
             </div>
             <div class="col-auto">
               <span id="kode" class="form-text fs-6">
-              <?= $kodeTransaksi ?>  
+                <?= $kodeTransaksi ?>
               </span>
             </div>
             <div class="col d-flex justify-content-end">
@@ -84,25 +84,13 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                   </div>
                   <div class="mb-3">
                     <label for="id_obat" class="form-label fw-bold">Obat Pasien</label>
-                    <select class="form-select form-select-sm" name="id_obat" id="id_obat">
-                      <option>Pilih Obat Pasien</option>
-
+                    <select name="kd_obt" class="form-select form-select-sm" id="kd_obt">
+                      <option value=0>-Pilih Obat-</option>
                       <?php
                       $query = "SELECT * FROM obat ORDER BY nama_obat ASC";
                       $result = mysqli_query($koneksi, $query);
-                      if (!$result) {
-                        die("Query Error: " . mysqli_errno($koneksi) .
-                          " - " . mysqli_error($koneksi));
-                      }
-
-                      $no = 1;
-                      while ($row = mysqli_fetch_assoc($result)) {
-                        $harga = $row['harga'];
-                      ?>
-
-                        <option value="<?= $row['id'] ?>"><?= $row['nama_obat'] ?></option>
-                      <?php
-                        $no++;
+                      while ($row = mysqli_fetch_array($result)) {
+                        echo '<option value="' . $row['kode_obat'] . '">' . $row['nama_obat'] . '</option>';
                       }
                       ?>
                     </select>
@@ -123,7 +111,7 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                   </div>
                   <div class="mb-3">
                     <label for="harga" class="form-label fw-bold">Harga Obat</label>
-                    <input type="number" id="harga_obat" name="harga_obat" class="form-control form-control-sm" min="0" onkeypress='return restrictAlphabets(event)'>
+                    <input type="number" id="hrg_obt" name="harga_obat" class="form-control form-control-sm" min="0" onkeypress='return restrictAlphabets(event)'>
                   </div>
                   <div class="mb-3">
                     <label for="keluhan" class="form-label fs-5 fw-bold">Total Harga</label>

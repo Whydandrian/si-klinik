@@ -31,7 +31,7 @@ if($cek > 0){
 		$_SESSION['username'] = $username;
 		$_SESSION['level'] = "admin_obat";
 		$_SESSION['status'] = "login";
-		header("location:pages/admin_obat/admin_obat.php");
+		header("location:pages/tindakan/resep_pasien.php");
 	}else{
 		header("location:?pesan=gagal");
 	}

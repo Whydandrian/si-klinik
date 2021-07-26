@@ -54,14 +54,14 @@
 					<li class="list-group-item d-flex justify-content-between align-items-start">
 						<div class="ms-2 me-auto">
 							<div class="fw-bold">Login Bag. Pendaftaran</div>
-							Username : budiutomo<br>Password : user001
+							Username : beni<br>Password : beni123
 						</div>
 						<span class="badge bg-primary rounded-pill">14</span>
 					</li>
 					<li class="list-group-item d-flex justify-content-between align-items-start">
 						<div class="ms-2 me-auto">
 							<div class="fw-bold">Login Bag. Penerimaan Obat</div>
-							Username : salsabila<br>Password : user002
+							Username : neni<br>Password : neni123
 						</div>
 						<span class="badge bg-primary rounded-pill">14</span>
 					</li>

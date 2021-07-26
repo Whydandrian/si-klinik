@@ -4,29 +4,16 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.1/dist/chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
 
-<script type="text/javascript">
-    <?php echo $jsArray; ?>
+<?php
+$page = basename($_SERVER['PHP_SELF']);
+if ($page === "pendaftaran_pasien.php") {
+    include 'pendaftaran.php';
+}
+if ($page === "resep_pasien.php") {
+    include 'biaya_obat.php';
+}
+?>
 
-    function changeValue(nim) {
-        document.getElementById('psn_nama').value = dtMhs[nim].nama_pasien;
-        document.getElementById('psn_kode').value = dtMhs[nim].kode_pasien;
-        document.getElementById('almt').value = dtMhs[nim].alamat;
-        document.getElementById('tlp').value = dtMhs[nim].telepon;
-        if (dtMhs[nim].jenis_kelamin == "L") {
-            document.getElementById('jns_kelamin').value = "Laki-laki";
-        } else {
-            document.getElementById('jns_kelamin').value = "Perempuan";
-        }
-    };
-
-    function sweetAlert() {
-        Swal.fire(
-            'Informasi Pendaftaran',
-            'Berhasil Registrasi Pasien!',
-            'success'
-        )
-    }
-</script>
 <script>
     function restrictAlphabets(e) {
         var x = e.which || e.keycode;
@@ -39,20 +26,31 @@
         $('#nama_pasien').focus();
         let data = 0;
         $('#data-pasien-lama').hide();
-        $("#harga_total").val(parseInt(data));
+        // $("#harga_total").val(parseInt(data));
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-        $("#harga_obat").keyup(function() {
-            var hargaObat = $("#harga_obat").val();
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+        $("#jumlah").keyup(function() {
+            var loan_amt = document.getElementById('harga_obat');
+            loan_amt.value = loan_amt.value.replace(/[^0-9]/g, '');
+
             var jumlah = $("#jumlah").val();
 
-            var total = parseInt(hargaObat) * parseInt(jumlah);
+            var total = parseInt(loan_amt.value) * parseInt(jumlah);
             $("#harga_total").val(total);
-
-        });
-
-        $('body').on("change", "#id_obat", function() {
-            var harga = $("#harga").val();
-            var jumlah = $("#jumlah").val();
         });
 
         $('#example').DataTable();
@@ -142,50 +140,19 @@
 
     });
 
-    const selectElement = document.querySelector('.harga_total');
-    selectElement.addEventListener('change', (event) => {
-        // const result = document.querySelector('.result');
-        // result.textContent = `You like ${event.target.value}`;
-        console.log('test event onchange');
-    });
+    // const selectElement = document.querySelector('.harga_total');
+    // selectElement.addEventListener('change', (event) => {
+    //     // const result = document.querySelector('.result');
+    //     // result.textContent = `You like ${event.target.value}`;
+    //     console.log('test event onchange');
+    // });
 </script>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
+<?php
+$page = basename($_SERVER['PHP_SELF']);
+if ($page === "dashboard.php") {
+    include 'dash.php';
+}
+?>
 <!-- Optional JavaScript; choose one of the two! -->
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
 <!-- Option 1: Bootstrap Bundle with Popper -->
