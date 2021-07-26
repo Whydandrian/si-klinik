@@ -140,12 +140,42 @@ if ($page === "resep_pasien.php") {
 
     });
 
-    // const selectElement = document.querySelector('.harga_total');
-    // selectElement.addEventListener('change', (event) => {
-    //     // const result = document.querySelector('.result');
-    //     // result.textContent = `You like ${event.target.value}`;
-    //     console.log('test event onchange');
-    // });
+
+    // Simpan Data Biaya Obat Pasien
+    $(".tombol-simpan-obat").click(function() {
+        // Property data obat pasien
+        var kode_pendaftaran = $('#kd_pasien').val();
+        var kode_obat = $('#kode_obat').val();
+        var jumlah_obat = $('#jumlah').val();
+        var harga_total_obat = $('#harga_total').val();
+
+        if (kode_pendaftaran != "" && kode_obat != "" && jumlah_obat != "") {
+            var data = $('.form-biaya').serialize();
+            $.ajax({
+                type: 'POST',
+                url: "proses_tambah.php",
+                data: data,
+                cache: false,
+                success: function() {
+                    setTimeout(function() {
+                        Swal.fire(
+                            'INFORMASI ADMIN',
+                            'Transaksi pengambilan obat pasien berhasil!',
+                            'success'
+                        );
+                        document.location.reload();
+                    }, 1200);
+                }
+            });
+
+        } else {
+            Swal.fire(
+                'INFORMASI ADMIN',
+                'Mohon periksa data registrasi pasien kembali!',
+                'error'
+            )
+        }
+    });
 </script>
 <?php
 $page = basename($_SERVER['PHP_SELF']);

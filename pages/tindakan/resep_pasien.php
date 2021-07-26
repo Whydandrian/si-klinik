@@ -52,7 +52,7 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
               <h5 class="text-secondary">Tanggal registrasi : <?= date("d M Y") ?></h5>
             </div>
           </div>
-          <form method="POST" action="proses_tambah.php" class="row" id="biaya-form">
+          <form method="POST" action="proses_tambah.php" class="row form-biaya" id="biaya-form">
             <div class="col-7">
               <div class="card border-0">
                 <div class="card-header fs-6 bg-info text-white  fw-bold">
@@ -69,8 +69,8 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
                       $result = mysqli_query($koneksi, $query);
                       $jsArray = "var dtMhs = new Array();\n";
                       while ($row = mysqli_fetch_array($result)) {
-                        echo '<option value="' . $row['kode_pasien'] . '">' . $row['nama_pasien'] . '</option>';
-                        $jsArray .= "dtMhs['" . $row['kode_pasien'] . "'] = {nama_pasien:'" . addslashes($row['nama_pasien']) . "', tagihan_layanan:'" . addslashes($row['tagihan_layanan']) . "', kode_pasien:'" . addslashes($row['kode_pasien']) . "', nama_layanan:'" . addslashes($row['nama_layanan']) . "', alamat:'" . addslashes($row['alamat']) . "'};\n";
+                        echo '<option value="' . $row['kode_pendaftaran'] . '">' . $row['nama_pasien'] . '</option>';
+                        $jsArray .= "dtMhs['" . $row['kode_pendaftaran'] . "'] = {nama_pasien:'" . addslashes($row['nama_pasien']) . "', tagihan_layanan:'" . addslashes($row['tagihan_layanan']) . "', kode_pasien:'" . addslashes($row['kode_pasien']) . "', nama_layanan:'" . addslashes($row['nama_layanan']) . "', alamat:'" . addslashes($row['alamat']) . "'};\n";
                       }
                       ?>
                     </select>
@@ -144,7 +144,8 @@ $kodeTransaksi = $kd . sprintf("%03s", $list);
               </div>
 
             </div>
-            <button type="submit" class="btn btn-warning fs-4 fw-bold">Total</button>
+            <!-- <button type="submit" class="btn btn-warning fs-4 fw-bold">Total</button> -->
+            <a class="tombol-simpan-obat btn btn-warning btn-md fs-4 fw-bold">Total Pembayaran</a>
             <!-- <a href="../admin/data_obat.php" class="btn btn-warning">Kembali</a> -->
           </form>
 

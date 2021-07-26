@@ -1,17 +1,21 @@
 <?php 
 include '../../config/connection.php';
+// Create Auto kode Pasien
+$qryTrans = mysqli_query($koneksi, "SELECT max(kode_transaksi) as kode_transaksi FROM biaya_pasien");
+$dataTrans = mysqli_fetch_array($qryTrans);
+$kodeTrans = $dataTrans['kode_transaksi'];
+$ll = (int) substr($kodeTrans, 5, 3);
+$ll++;
 
-$id_transaksi = $_POST['id_transaksi'];
-$kode_pasien = $_POST['kode_pasien'];
-$id_obat = $_POST['id_obat'];
-$harga_obat = $_POST['harga_obat'];
+$kd = "TRANS";
+
+// kode transaksi baru
+$kode_transaksi_baru = $kd . sprintf("%03s", $ll);
+$tgl_pendaftaran = date("Y-m-d");
+$kode_pendaftaran = $_POST['kd_pasien'];
+$kode_obat = $_POST['kode_obat'];
 $jumlah = $_POST['jumlah'];
 $harga_total = $_POST['harga_total'];
 
-
-
-mysqli_query($koneksi,"INSERT INTO biaya_pasien VALUES('','$id_transaksi','$kode_pasien','$id_obat','$harga_obat','$jumlah','$harga_total')");
-
-header("location:resep_pasien.php?pesan=transaksi_berhasil");
-
+mysqli_query($koneksi,"INSERT INTO biaya_pasien VALUES('','$kode_transaksi_baru','$tgl_pendaftaran','$kode_pendaftaran','$kode_obat','$jumlah','$harga_total')");
 ?>
