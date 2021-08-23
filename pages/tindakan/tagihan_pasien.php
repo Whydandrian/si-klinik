@@ -48,7 +48,7 @@ if ($_SESSION['level'] != "admin_obat") {
             </thead>
             <tbody>
               <?php
-              $query = "SELECT `biaya_pasien`.*, `pasien`.`nama_pasien`, `pasien`.`jenis_kelamin`, `pasien`.`jenis_pasien`, `pasien`.`telepon`, `obat`.`nama_obat`, `obat`.`jenis_obat` FROM `obat` INNER JOIN `biaya_pasien` ON `biaya_pasien`.`id_obat` = `obat`.`id` INNER JOIN `pasien` ON `biaya_pasien`.`kode_pasien` = `pasien`.`kode_pasien` ORDER BY `pasien`.`nama_pasien` ASC";
+              $query = "SELECT `biaya_pasien`.`id`, `biaya_pasien`.`kode_transaksi`, `biaya_pasien`.`tgl_transaksi`, `pendaftaran`.`kode_pendaftaran`, `pendaftaran`.`kode_pasien`, `pasien`.`nik_ktp`, `pasien`.`nama_pasien`, `pendaftaran`.`kode_layanan`, SUM(`layanan`.`harga_layanan`) as tagihan_layanan, `biaya_pasien`.`jumlah_obat`, `biaya_pasien`.`total_harga` FROM `layanan` RIGHT JOIN `pendaftaran` ON `pendaftaran`.`kode_layanan` = `layanan`.`kode_layanan` RIGHT JOIN `pasien` ON `pendaftaran`.`kode_pasien` = `pasien`.`kode_pasien` RIGHT JOIN `biaya_pasien` ON `biaya_pasien`.`kode_pendaftaran` = `pendaftaran`.`kode_pendaftaran` GROUP BY `pendaftaran`.`kode_pasien` ORDER BY `pasien`.`nama_pasien` ASC";
               $result = mysqli_query($koneksi, $query);
               if (!$result) {
                 die("Query Error: " . mysqli_errno($koneksi) .
@@ -59,7 +59,7 @@ if ($_SESSION['level'] != "admin_obat") {
               ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td><?php echo $row['id_transaksi']; ?></td>
+                  <td><?php echo $row['kode_transaksi']; ?></td>
                   <td><?php echo $row['nama_pasien']; ?></td>
                   <td><?php echo $row['nama_obat']; ?></td>
                   <td><?php echo $row['jumlah']; ?></td>
